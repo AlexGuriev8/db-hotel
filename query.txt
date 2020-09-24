@@ -38,10 +38,8 @@ FROM `pagamenti`;
 7. Seleziona gli ospiti riconosciuti con patente e nati nel 1975
 
 SELECT * 
-FROM `ospiti` 
-WHERE `document_type` = 'Driver License' 
-AND `date_of_birth` > '1974-12-31' 
-AND `date_of_birth` < '1976-01-01';
+FROM `ospiti`
+WHERE `document_type` = 'Driver License' AND `date_of_birth` LIKE '1975%';
 
 
 8.Quanti posti letto ha l’hotel in totale?
