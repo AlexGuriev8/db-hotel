@@ -17,7 +17,8 @@ WHERE `date_of_birth` >'1998-01-01';
 
 SELECT * 
 FROM `ospiti` 
-WHERE `date_of_birth` <'2000-01-01';
+WHERE `date_of_birth` <=DATE_SUB(CURDATE(),INTERVAL 21 YEAR)
+
 
 4. Seleziona tutti gli ospiti il cui nome inizia con la D
 
@@ -27,19 +28,24 @@ WHERE `name` LIKE 'D%';
 
 5. Calcolare il totale degli ospiti paganti
 
-SELECT COUNT(*)
-FROM `paganti`;
+SELECT COUNT(`id`)
+FROM `paganti`
+WHERE `ospite_id` <> 'NULL';
+
+SELECT COUNT(`ospite_id`) 
+FROM `paganti`  
 
 6. Qual è il prezzo massimo pagato?
 
-SELECT MAX(`price`)
-FROM `pagamenti`;
+SELECT MAX(`price`) 
+FROM `pagamenti`
+WHERE `status` = 'accepted';
 
 7. Seleziona gli ospiti riconosciuti con patente e nati nel 1975
 
 SELECT * 
 FROM `ospiti`
-WHERE `document_type` = 'Driver License' AND `date_of_birth` LIKE '1975%';
+WHERE `document_type` = 'Driver License' AND YEAR(`date_of_birth`) ='1975%';
 
 
 8.Quanti posti letto ha l’hotel in totale?
